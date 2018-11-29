@@ -145,7 +145,7 @@ int greatestCommonDivisor(int a, int b)
 
 std::vector<testWP_st> suite4VPT::inputs;
 
-INSTANTIATE_TEST_CASE_P(Demo, suite4VPT, ::testing::ValuesIn(suite4VPT::caseInit()));
+INSTANTIATE_TEST_CASE_P(Demo, suite4VPT, ::testing::ValuesIn(suite4VPT::caseInit(suite4VPT::inputs)));
 
 TEST_P(suite4VPT, test1)
 {

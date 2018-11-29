@@ -1,3 +1,4 @@
+
 #include "Header.h"
 
 
@@ -10,8 +11,8 @@ int x = []() {
 
 int Leet_Solution::searchInsert(std::vector<int> &nums, int target)
 {
-	int bottom = 0;
-	int top = nums.size() - 1;
+	unsigned long bottom = 0;
+	unsigned long top = (nums.size() - 1);
 
 	//
 	while (bottom<=top)

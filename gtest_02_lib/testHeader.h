@@ -82,6 +82,7 @@ class IsPrimeParamTest :public::testing::TestWithParam<int>
 
 };
 
+
 struct testWP_st
 {
 	int exp;
@@ -91,13 +92,25 @@ struct testWP_st
 
 class suite4VPT:public testing::TestWithParam<testWP_st>
 {
-private:
+public:
 	static std::vector<testWP_st> inputs;
 
-protected:
+public:
+	static void SetUpTestCase()
+	{
+		std::cout << "test suite 1 setup\n\n";
+		caseInit(inputs);
+	}
+	suite4VPT()
+	{
+		std::cout << "test suite 1 setup\n\n";
+		caseInit(inputs);
+	}
 
 public:
-	static std::vector<testWP_st> caseInit()	//static成员函数 不会 修改任何对象 的 非static 成员
+
+	//static成员函数 不会 修改任何对象 的 非static 成员
+	static std::vector<testWP_st> caseInit(std::vector<testWP_st> &ref)
 	{
 		testWP_st tmp;
 		for (int i = 0; i< 5; i++)
@@ -105,9 +118,11 @@ public:
 			tmp.exp = 1;
 			tmp.a = i * 2 + 1;
 			tmp.b = (i + 2) * 2;
-			inputs.push_back(tmp);
+			ref.push_back(tmp);
 		}
-		return inputs;
+		//return a duplicate of ref
+		std::vector< testWP_st> res = ref;
+		return res;
 	}
 };
 
