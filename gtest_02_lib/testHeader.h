@@ -30,7 +30,7 @@ private:
 class leetSolution_Suite :public testing::Test
 {
 
-protected:
+public:
 	static void SetUpTestCase()
 	{
 		std::cout << "test suite 1 setup\n\n";
@@ -98,13 +98,12 @@ public:
 public:
 	static void SetUpTestCase()
 	{
-		std::cout << "test suite 1 setup\n\n";
+		std::cout << "\n SetUpTestCase\n\n";
 		caseInit(inputs);
 	}
 	suite4VPT()
 	{
-		std::cout << "test suite 1 setup\n\n";
-		caseInit(inputs);
+		std::cout << "\n class object_constructor\n\n";
 	}
 
 public:

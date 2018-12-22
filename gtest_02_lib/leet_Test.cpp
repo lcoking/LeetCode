@@ -146,11 +146,13 @@ int greatestCommonDivisor(int a, int b)
 std::vector<testWP_st> suite4VPT::inputs;
 
 INSTANTIATE_TEST_CASE_P(Demo, suite4VPT, ::testing::ValuesIn(suite4VPT::caseInit(suite4VPT::inputs)));
+//INSTANTIATE_TEST_CASE_P(Demo, suite4VPT, ::testing::ValuesIn(suite4VPT::inputs));
 
 TEST_P(suite4VPT, test1)
 {
 	const testWP_st &n = suite4VPT::GetParam();
-	EXPECT_EQ(n.exp, greatestCommonDivisor(n.a, n.b));
+	//false ÔòÊä³ö×Ö·û´®
+	EXPECT_EQ(n.exp, greatestCommonDivisor(n.a, n.b))<<"\n\nNOT EQUAL!\n\n";
 }
 
 
@@ -170,3 +172,6 @@ TEST_P(suite4VPT, test1)
 //
 //typedef testing::Types<char, int, unsigned int> myTypes;
 //INSTANTIATE_TYPED_TEST_CASE_P(my, TypeTest, myTypes);
+
+
+

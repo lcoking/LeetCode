@@ -6,8 +6,7 @@
 
 
 
-
-
+//Function main() is in gtest_main.cc
 int main(int argc, char** argv)
 {
 	//add global test environment here

@@ -1,0 +1,3 @@
+LIBRARY interface_practice
+EXPORTS
+getObject @1
