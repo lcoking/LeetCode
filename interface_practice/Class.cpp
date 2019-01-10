@@ -2,7 +2,6 @@
 
 
 
-
 std::string derivedClass::getName() const	//不会修改class member 或调用 非const member function
 {
 	return _name;

@@ -1,3 +1,9 @@
+;.def 中注释单独成行, 以";"开始
+
+; keyword LIBRARY + DLL名
 LIBRARY interface_from_DLL
+
+; EXPORT 后列出导出的function  
+; @之后的数字n 表示function 序号
 EXPORTS
 getObject @1

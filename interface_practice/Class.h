@@ -2,14 +2,14 @@
 #include <string>
 #include <iostream>
 
-#define INTERFACE_(terminal)		\
+#define Interface_member(terminal)		\
 public:									\
 	virtual std::string getName() const ##terminal	\
-	virtual int getID() const ##terminal			\
+	virtual int getID() const ##terminal			
 
 
-#define INTERFACE_BASE		INTERFACE_(=0;)
-#define INTERFACE_DERIVED	INTERFACE_(;)
+#define INTERFACE_BASE		Interface_member(=0;)
+#define INTERFACE_DERIVED	Interface_member(;)
 
 //条件编译
 #define  myDLL_export
@@ -43,4 +43,5 @@ class derivedClass : public baseClass
 {
 	INTERFACE_DERIVED	//每个member function 仍要手动实现
 };
+
 

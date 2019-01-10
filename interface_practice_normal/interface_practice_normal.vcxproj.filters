@@ -15,8 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="interface_call_practice.cpp">
+    <ClCompile Include="interface_practice_normal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="duck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console_Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
