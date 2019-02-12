@@ -20,32 +20,23 @@ Interface Behavior
 
 
 
-class Duck :public Behavior
+Interface Duck :public Behavior
 {
 	COMMON
 
 public:
-	void Swim() 
-	{
-		std::cout << "Duck SWIM!\n\n";
-	}
+	virtual void Swim() const;
 };
 
 
-void Duck::Quack() const
-{
-	std::cout << "Duck Quack!\n\n";
-}
 
-void Duck::Fly() const
-{
-	std::cout << "Duck Fly!\n\n";
-}
 
 
 class RedDuck :public Duck
 {
 	COMMON
+public:
+	virtual void Swim() const;
 };
 
 void RedDuck::Quack() const
@@ -58,8 +49,31 @@ void RedDuck::Fly() const
 	std::cout << RED << "RedDuck Fly!\n\n" << RESET;
 }
 
+void RedDuck::Swim() const
+{
+	std::cout << RED << "RedDuck Swim!\n\n" << RESET;
+}
+
 
 class LandLubber :public Duck
 {
 	COMMON
+public:
+	virtual void Swim() const;
 };
+
+void LandLubber::Quack() const
+{
+	std::cout << MAGENTA << "LandLubber Quack!\n\n" << RESET;
+}
+
+void LandLubber::Fly() const
+{
+	std::cout << MAGENTA << "LandLubber Fly!\n\n" << RESET;
+}
+
+void LandLubber::Swim() const
+{
+	std::cout << MAGENTA << "LandLubber CAN NOT Swim!\n\n" << RESET;
+}
+

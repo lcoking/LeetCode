@@ -58,47 +58,61 @@ public:							\
 //There is NOTHING to construct
 INTERFACE Shape		//pure interface
 {
-public:
+
 	INTERFACE_BASE
 
+public:
+	virtual ~Shape() = default;
 };
 
 
 //每个派生类都要实现接口
-class Circle1 :public Shape
-{
-public:
-	Circle1(Point p, unsigned int r, Color c) : cent(p), radius(r), colr(c) {}
-	INTERFACE_DERIVED
-
-private:
-	Point cent;
-	unsigned int radius;
-	Color colr;
-};
-
-class Triangle :public Shape
-{
-public:
-	Triangle(Point p1, Point p2, Point p3) { /*...*/};
-	INTERFACE_DERIVED
-};
+//class Circle1 :public Shape
+//{
+//public:
+//	Circle1(Point p, unsigned int r, Color c) : cent(p), radius(r), colr(c) {}
+//	INTERFACE_DERIVED
+//
+//private:
+//	Point cent;
+//	unsigned int radius;
+//	Color colr;
+//};
+//
+//class Triangle :public Shape
+//{
+//public:
+//	Triangle(Point p1, Point p2, Point p3) { /*...*/};
+//	INTERFACE_DERIVED
+//};
 
 
 
 
 //Implementing dual hierarchy by multiple-inheritance variant
-class Circle :public Shape
+class Circle :public virtual Shape
 {
+	//INTERFACE_BASE
 public:
 	virtual int Radius() const = 0;
+
+	virtual ~Circle() = default;
+
+
 };
 
 class Smiley :public virtual Circle
 {
 public:
 
+	virtual ~Smiley() = default;
 };
+
+
+
+
+
+
 
 
 namespace Impl {
@@ -133,6 +147,18 @@ void Impl::Shape::rotate(int a)
 
 }
 
+void Impl::Shape::move(Point p)
+{
+
+}
+
+void Impl::Shape::redraw()
+{
+
+}
+
+
+
 
 
 
@@ -143,6 +169,8 @@ public:
 	Circle() {};
 	~Circle() {};
 
+	INTERFACE_DERIVED
+
 	int Radius() const override
 	{
 		/*...*/
@@ -151,6 +179,33 @@ public:
 
 
 };
+
+
+Point Impl::Circle::center() const 
+{
+	return Point();
+}
+
+Color Impl::Circle::color() const
+{
+	return Color();
+}
+
+void Impl::Circle::rotate(int a)
+{
+
+}
+
+void Impl::Circle::move(Point p)
+{
+
+}
+
+void Impl::Circle::redraw()
+{
+
+}
+
 
 
 class Impl::Smiley:public virtual ::Smiley, public Impl::Circle
@@ -172,7 +227,7 @@ public:
 
 	virtual void rotate(int)
 	{
-	
+		std::cout << "Impl::Smily   rotate ! \n\n";
 	}
 
 	virtual void move(Point)
@@ -183,5 +238,9 @@ public:
 	virtual void redraw()
 	{
 
+	}
+	virtual int Radius() const
+	{
+		return 1;
 	}
 };

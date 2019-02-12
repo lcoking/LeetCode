@@ -7,29 +7,32 @@
 
 int main()
 {
-	Duck *pDuck = new Duck();
+	//Duck *pDuck = new RedDuck();
+	//pDuck->Fly();
+	//pDuck->Quack();
+	//pDuck->Swim();
+
+	//delete pDuck;
+
+	Duck *pDuck = new LandLubber();
 	pDuck->Fly();
 	pDuck->Quack();
 	pDuck->Swim();
 
 	delete pDuck;
 
+	Behavior *pBehavior = new RedDuck();
 
-	RedDuck *pRed = new RedDuck();
-	pRed->Fly();
-	pRed->Quack();
-	pRed->Swim();
+	pBehavior->Fly();
+	pBehavior->Quack();
 	
-	delete pRed;
+	delete pBehavior;
 
-	pDuck = new RedDuck();
-	pDuck->Fly();
-	pDuck->Quack();
-	pDuck->Swim();
+	pBehavior = new LandLubber();
+	pBehavior->Fly();
+	pBehavior->Quack();
 
-	//basePtr 调用base virtual function 用 base::function_name 来指明
-	pDuck->Duck::Fly();
+	delete pBehavior;
 
-	delete pDuck;
 }
 

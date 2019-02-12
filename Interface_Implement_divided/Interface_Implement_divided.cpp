@@ -8,7 +8,8 @@
 
 int main()
 {
-	Impl::Shape *pShape = new Impl::Smiley();
+	::Shape *pShape = new Impl::Smiley();
+	pShape->rotate(12);
 	return 0;
 }
 
