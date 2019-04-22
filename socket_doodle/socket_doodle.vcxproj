@@ -20,10 +20,11 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{8BC7323A-A570-4C7C-9B64-A8A8643F55C4}</ProjectGuid>
+    <ProjectGuid>{F985BF8C-512C-4E69-B694-A8C1B8236D3C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>interfaceexportlibNdll</RootNamespace>
+    <RootNamespace>socketdoodle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>socket_server</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -151,20 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CircleImpl.cpp" />
-    <ClCompile Include="CircleManager.cpp" />
-    <ClCompile Include="interface_export_lib_N_dll.cpp" />
-    <ClCompile Include="Person.cpp" />
-    <ClCompile Include="PersonImpl.cpp" />
-    <ClCompile Include="Widget.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Circle.h" />
-    <ClInclude Include="CircleImpl.h" />
-    <ClInclude Include="CircleManager.h" />
-    <ClInclude Include="Person.h" />
-    <ClInclude Include="PersonImpl.h" />
-    <ClInclude Include="Widget.h" />
+    <ClCompile Include="server.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

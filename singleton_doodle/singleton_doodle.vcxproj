@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{8BC7323A-A570-4C7C-9B64-A8A8643F55C4}</ProjectGuid>
+    <ProjectGuid>{154DD2C4-4780-46BE-B15F-6A2E99D44777}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>interfaceexportlibNdll</RootNamespace>
+    <RootNamespace>singletondoodle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -151,20 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CircleImpl.cpp" />
-    <ClCompile Include="CircleManager.cpp" />
-    <ClCompile Include="interface_export_lib_N_dll.cpp" />
-    <ClCompile Include="Person.cpp" />
-    <ClCompile Include="PersonImpl.cpp" />
-    <ClCompile Include="Widget.cpp" />
+    <ClCompile Include="singleton_doodle.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Circle.h" />
-    <ClInclude Include="CircleImpl.h" />
-    <ClInclude Include="CircleManager.h" />
-    <ClInclude Include="Person.h" />
-    <ClInclude Include="PersonImpl.h" />
-    <ClInclude Include="Widget.h" />
+    <ClInclude Include="Header.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

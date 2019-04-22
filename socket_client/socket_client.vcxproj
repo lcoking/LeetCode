@@ -18,11 +18,14 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="client.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{8BC7323A-A570-4C7C-9B64-A8A8643F55C4}</ProjectGuid>
+    <ProjectGuid>{81BFEB2F-8AA8-44A6-8ED0-3AE125E0A5E7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>interfaceexportlibNdll</RootNamespace>
+    <RootNamespace>socketclient</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -150,22 +153,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="CircleImpl.cpp" />
-    <ClCompile Include="CircleManager.cpp" />
-    <ClCompile Include="interface_export_lib_N_dll.cpp" />
-    <ClCompile Include="Person.cpp" />
-    <ClCompile Include="PersonImpl.cpp" />
-    <ClCompile Include="Widget.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Circle.h" />
-    <ClInclude Include="CircleImpl.h" />
-    <ClInclude Include="CircleManager.h" />
-    <ClInclude Include="Person.h" />
-    <ClInclude Include="PersonImpl.h" />
-    <ClInclude Include="Widget.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
