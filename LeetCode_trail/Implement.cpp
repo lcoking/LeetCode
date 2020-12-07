@@ -62,3 +62,88 @@ std::string Leet_Solution::addString(std::string num1, std::string num2)
 	}
 	return num1;
 }
+
+
+// Leetcode 1114	Print in order
+class Foo
+{
+public:
+	int							count = 0;
+	std::mutex					mtx;
+	std::condition_variable		cv;
+
+	Foo()
+	{
+		count = 1;
+		//cv.notify_all();
+	}
+
+	void first(std::function<void()> printFirst)
+	{
+		std::unique_lock<std::mutex>lck(mtx);
+		printFirst();
+		count = 2;
+		lck.unlock();
+		cv.notify_all();	//	唤醒所有等待线程
+	}
+
+	void second(std::function<void()> printSecond)
+	{
+		std::unique_lock<std::mutex>lck(mtx);
+		cv.wait(lck, [this]() {return count == 2; });
+
+		printSecond();
+		count = 3;
+		lck.unlock();
+		cv.notify_all();
+	}
+
+	void third(std::function<void()> printThird)
+	{
+		std::unique_lock<std::mutex>lck(mtx);
+		cv.wait(lck, [this]() {return count == 3; });
+
+		printThird();
+	}
+
+};
+
+
+
+
+// Leetcode 1115	Print FooBar Alternately
+class FooBar
+{
+public:
+	FooBar(int n) : shouldFoo(true) {
+		this->n = n;
+	}
+
+	void foo(std::function<void()> printFoo) {
+		for (int i = 0; i < n; i++) {
+			std::unique_lock<std::mutex> lck(m);
+			cv.wait(lck, [this] { return shouldFoo; });
+			// printFoo() outputs "foo". Do not change or remove this line.
+			printFoo();
+			shouldFoo = false;
+			cv.notify_one();	//	随机唤醒一个等待线程
+		}
+	}
+
+	void bar(std::function<void()> printBar) {
+		for (int i = 0; i < n; i++) {
+			std::unique_lock<std::mutex> lck(m);
+			cv.wait(lck, [this] { return !shouldFoo; });
+			// printBar() outputs "bar". Do not change or remove this line.
+			printBar();
+			shouldFoo = true;
+			cv.notify_one();
+		}
+	}
+
+private:
+	int n;
+	std::mutex m;
+	std::condition_variable cv;
+	bool shouldFoo;
+};

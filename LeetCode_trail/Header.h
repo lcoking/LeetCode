@@ -3,8 +3,10 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>		//for the usage of 'to_string'
-#include <objbase.h>	//for the useage of 'CoInitialize'
+#include <objbase.h>	//for the usage of 'CoInitialize'
 #include <assert.h>
+#include <mutex>
+#include <functional>	//for the usage of 'std::function()'
 
 struct TreeNode {
 	int val;

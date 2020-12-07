@@ -79,7 +79,7 @@ int main()
 
 	student stu1(2, 3);
 
-	student stu2;
+	//student stu2;
 
 }
 
