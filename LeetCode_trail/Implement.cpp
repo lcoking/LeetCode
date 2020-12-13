@@ -11,8 +11,8 @@ int x = []() {
 
 int Leet_Solution::searchInsert(std::vector<int> &nums, int target)
 {
-	unsigned long bottom = 0;
-	unsigned long top = (nums.size() - 1);
+	int bottom = 0;
+	int top = static_cast<int>(nums.size() - 1);
 
 	//
 	while (bottom<=top)
@@ -146,4 +146,58 @@ private:
 	std::mutex m;
 	std::condition_variable cv;
 	bool shouldFoo;
+};
+
+
+// Leetcode	1116	Print Zero Even Odd
+class ZeroEvenOdd
+{
+public:
+	ZeroEvenOdd(int n)
+	{
+		this->n = n;
+		num_to_print = 0;
+		current = 0;
+	}
+
+	//	printNumber(x) outputs "x", where x is an integer.
+	void zero(std::function<void(int)> printNumber)
+	{
+		do_work(printNumber, [&] {return num_to_print == 0; });
+	}
+
+	void even(std::function<void(int)> printNumber)
+	{
+		do_work(printNumber, [&] {return num_to_print != 0 && num_to_print % 2 == 0; });
+	}
+
+	void odd(std::function<void(int)> printNumber)
+	{
+		do_work(printNumber, [&] {return num_to_print % 2 != 0; });
+	}
+
+protected:
+	void do_work(std::function<void(int)> print, std::function<bool()> eval)
+	{
+		while (current <= n)
+		{
+			std::unique_lock<std::mutex> ul(mtx);
+			cv.wait(ul, [&] {return eval() || current > n; });
+			if (current > n)
+			{
+				break;
+			}
+
+			print(num_to_print);
+			num_to_print = num_to_print == 0 || num_to_print == n ? ++current : 0;
+			cv.notify_all();
+		}
+	}
+
+private:
+	int							n;
+	std::mutex					mtx;
+	std::condition_variable		cv;
+	std::atomic<int>			num_to_print;
+	std::atomic<int>			current;
 };
