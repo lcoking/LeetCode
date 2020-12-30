@@ -39,6 +39,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reinterpret_cast_doodle", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "derived_doodle", "derived_doodle\derived_doodle.vcxproj", "{7695FD02-3FF8-4EAA-BB6C-D74CCABBA376}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "serial_port_handler_C++", "serial_port_handler_C++\serial_port_handler_C++.vcxproj", "{95517FF9-C5C5-486C-9617-43B273DEF9FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -191,6 +193,14 @@ Global
 		{7695FD02-3FF8-4EAA-BB6C-D74CCABBA376}.Release|x64.Build.0 = Release|x64
 		{7695FD02-3FF8-4EAA-BB6C-D74CCABBA376}.Release|x86.ActiveCfg = Release|Win32
 		{7695FD02-3FF8-4EAA-BB6C-D74CCABBA376}.Release|x86.Build.0 = Release|Win32
+		{95517FF9-C5C5-486C-9617-43B273DEF9FB}.Debug|x64.ActiveCfg = Debug|x64
+		{95517FF9-C5C5-486C-9617-43B273DEF9FB}.Debug|x64.Build.0 = Debug|x64
+		{95517FF9-C5C5-486C-9617-43B273DEF9FB}.Debug|x86.ActiveCfg = Debug|Win32
+		{95517FF9-C5C5-486C-9617-43B273DEF9FB}.Debug|x86.Build.0 = Debug|Win32
+		{95517FF9-C5C5-486C-9617-43B273DEF9FB}.Release|x64.ActiveCfg = Release|x64
+		{95517FF9-C5C5-486C-9617-43B273DEF9FB}.Release|x64.Build.0 = Release|x64
+		{95517FF9-C5C5-486C-9617-43B273DEF9FB}.Release|x86.ActiveCfg = Release|Win32
+		{95517FF9-C5C5-486C-9617-43B273DEF9FB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

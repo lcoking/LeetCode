@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <memory>
+#include <vector>
 
 template<typename T>
 class auto_release_ptr

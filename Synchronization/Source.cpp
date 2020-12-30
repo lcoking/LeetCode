@@ -99,7 +99,9 @@ int shared_ptr__construct_destruct_doodle()
 int shared_ptr_assignment_doole()
 {
 	std::shared_ptr<int> foo;
+
 	std::shared_ptr<int> bar(new int(10));
+
 
 	foo = bar;	//	copy, reference count + 1 
 
@@ -127,14 +129,46 @@ int shared_ptr_assignment_doole()
 int unique_ptr_constructor_doodle()
 {
 
-	std::unique_ptr<int> pint(new int(5));
+	//std::unique_ptr<int> pint(new int(5));
+
+
+	auto pint(std::make_unique<int>(1));	//	recommended
 
 
 	return 0;
 }
 
 
-std::unique_ptr<int>& clone(int p)
+
+class T
+{
+public:
+
+	T(const char *addr, int offset)
+	{
+		serial_payload = std::make_unique<std::vector<char>>(addr, addr + offset);	
+	}
+
+	char* getPayLoad()
+	{
+		return serial_payload->data();
+	}
+
+private:
+	std::unique_ptr<std::vector<char>> serial_payload;
+};
+
+
+
+std::unique_ptr<T> read(const char *msg, int offset)
+{
+	auto data (std::make_unique<T>(msg, 5));
+	
+	return data;
+}
+
+
+std::unique_ptr<int> clone(int p)
 { 
 	std::unique_ptr<int> pint(new int(p));
 
@@ -142,19 +176,44 @@ std::unique_ptr<int>& clone(int p)
 }
 
 
+
+
+
+
+
 int unique_ptr_assignment_doodle()
 {
 
-	std::unique_ptr<int> pint(new int(10));
+	//std::unique_ptr<int> pint(new int(10));
+	//std::unique_ptr<int> pint2 = std::move(pint);	//	转移所有权, 原 unique_ptr 指针为 nullptr
 	
-	std::unique_ptr<int> pint2 = std::move(pint);	//	转移所有权, 原 unique_ptr 指针为 nullptr
+	//
+	//std::unique_ptr<int> ret = clone(4);
 
 
-	std::unique_ptr<int> ret = clone(4);
+	char msg[5] = { 65,66,67,68,69 };
+
+	//char* data = read(msg,5)->getPayLoad();	//	data 无意义
+	//std::cout << "data[0] = " << data[0] << "\n";
+
+
+	auto data = read(msg, 5);
+	char* data_payload = data->getPayLoad();
+	std::cout << "data[0] = " << data_payload[0] << "\n";
+
 
 
 	return 0;
 }
+
+
+
+/**
+ *	shared_ptr 线程安全性
+ */
+
+
+
 
 int main()
 {
@@ -163,6 +222,11 @@ int main()
 	//shared_ptr_assignment_doole();
 
 	//unique_ptr_constructor_doodle();
-	unique_ptr_assignment_doodle();
+	//unique_ptr_assignment_doodle();
+
+
+
+
+
 	return 0;
 }
