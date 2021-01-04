@@ -21,3 +21,33 @@ public:
 private:
 	T *_t;
 };
+
+
+
+/**
+ *	shared_ptr for managing memory allocated by malloc & file pointer
+ */
+
+// 释放文件指针
+auto fileRelease = [](FILE* fp)
+{
+	fclose(fp);
+	fp = NULL;
+	std::cout << "fp released \n";
+};
+
+
+//	释放 malloc 分配的内存空间
+template <typename T>
+auto mallocFree = [](T* p)
+{
+	free(p);
+	p = NULL;
+	std::cout << "malloc memory freed \n";
+	
+};
+
+
+
+
+

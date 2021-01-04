@@ -215,6 +215,115 @@ int unique_ptr_assignment_doodle()
 
 
 
+/**
+ *	shared_ptr 定制删除器
+ */
+
+void shared_ptr_custom_deleter_test()
+{
+	// file pointer
+	FILE* fp1 = NULL;
+	errno_t res = fopen_s(&fp1, "test00.txt", "r+");
+	std::shared_ptr<FILE> sp1(fp1, fileRelease);
+	
+
+	// memory allocated by malloc()
+	std::shared_ptr<int> sp2( (int*)malloc(sizeof(int)), 
+							  mallocFree<int>);		//	lambda 中使用模版类型 T, 调用lambda 时要具体化 T 的对应类型
+	std::shared_ptr<float> sp3( (float*)malloc(sizeof(float)), 
+							    mallocFree<float>);
+
+}
+
+
+/**
+ *	shared_ptr 循环引用
+ */
+
+struct Node
+{
+	Node(int value) :_value(value)
+	{
+		std::cout << "Node()\n";
+	}
+
+	~Node()
+	{
+		std::cout << "~Node()\n";
+	}
+
+	int _value;
+	//std::shared_ptr<Node> _prev;
+	//std::shared_ptr<Node> _next;
+	std::weak_ptr<Node> _prev;
+	std::weak_ptr<Node> _next;
+};
+
+void shared_ptr_recursive_reference_test()
+{
+	std::shared_ptr<Node>sp1(new Node(1));
+	std::shared_ptr<Node>sp2(new Node(2));
+
+	std::cout << sp1.use_count() << std::endl;
+	std::cout << sp2.use_count() << std::endl;
+
+	sp1->_next = sp2;
+	sp2->_prev = sp1;
+
+	std::cout << sp1.use_count() << std::endl;
+	std::cout << sp2.use_count() << std::endl;
+
+}
+
+
+/**
+ *	shared_from_this
+ */
+
+class A
+{
+public:
+	A(int y = 0) :x(y) {}
+
+	A* getThis()
+	{
+		return this;
+	}
+
+private:
+	int x;
+};
+
+
+class B:public std::enable_shared_from_this<B>
+{
+public:
+	B(int y = 0) :x(y) {}
+
+	std::shared_ptr<B> getThis()
+	{
+		return shared_from_this();
+	}
+
+private:
+	int x;
+};
+
+
+
+void shared_from_this_test()
+{
+	std::shared_ptr<B> sp1(new B());
+
+	std::shared_ptr<B> sp2(sp1->getThis());
+
+	printf("The reference count of sp1 is %ld\n", sp1.use_count());
+	printf("The reference count of sp2 is %ld\n", sp2.use_count());
+
+}
+
+
+
 int main()
 {
 	//raii_template_test();
@@ -223,10 +332,10 @@ int main()
 
 	//unique_ptr_constructor_doodle();
 	//unique_ptr_assignment_doodle();
+	//shared_ptr_custom_deleter_test();
 
-
-
-
+	//shared_ptr_recursive_reference_test();
+	shared_from_this_test();
 
 	return 0;
 }
