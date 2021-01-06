@@ -284,6 +284,10 @@ class A
 {
 public:
 	A(int y = 0) :x(y) {}
+	~A()
+	{
+		printf("Class A destructor called. \n");
+	}
 
 	A* getThis()
 	{
@@ -295,10 +299,14 @@ private:
 };
 
 
-class B:public std::enable_shared_from_this<B>
+class B : public std::enable_shared_from_this<B>
 {
 public:
 	B(int y = 0) :x(y) {}
+	~B()
+	{
+		printf("Class B destructor called. \n");
+	}
 
 	std::shared_ptr<B> getThis()
 	{
@@ -309,6 +317,19 @@ private:
 	int x;
 };
 
+class F :public B
+{
+public:
+	F(long y = 0) :x(y) {}
+	
+	std::shared_ptr<F> getThis()
+	{
+		return std::static_pointer_cast<F>(shared_from_this());
+	}
+
+private:
+	long x;
+};
 
 
 void shared_from_this_test()
@@ -320,6 +341,7 @@ void shared_from_this_test()
 	printf("The reference count of sp1 is %ld\n", sp1.use_count());
 	printf("The reference count of sp2 is %ld\n", sp2.use_count());
 
+	
 }
 
 

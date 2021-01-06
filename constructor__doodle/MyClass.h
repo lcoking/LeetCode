@@ -161,3 +161,49 @@ private:
 	int m_a;
 	int m_b;
 };
+
+
+
+class AA
+{
+public:
+	AA() :x(0)	//	∏∏¿‡±ÿ–Î”–default constructor
+	{
+		printf("Class AA default constructor called.\n");
+	}
+
+	AA(int y) :x(y) { printf("Class AA constructor called.\n"); }
+	~AA()
+	{
+		printf("Class AA destructor called. \n");
+	}
+
+	AA* getThis()
+	{
+		return this;
+	}
+
+private:
+	int x;
+};
+
+
+class BB : public AA
+{
+public:
+	BB() :x(0)
+	{
+		printf("Class BB default constructor called.\n");
+	}
+	BB(int y) :x(y)
+	{
+		printf("Class BB constructor called.\n");
+	}
+
+	~BB()
+	{
+		printf("Class BB destructor called.\n");
+	}
+private:
+	int x;
+};
