@@ -221,17 +221,40 @@ int unique_ptr_assignment_doodle()
 
 void shared_ptr_custom_deleter_test()
 {
-	// file pointer
-	FILE* fp1 = NULL;
-	errno_t res = fopen_s(&fp1, "test00.txt", "r+");
-	std::shared_ptr<FILE> sp1(fp1, fileRelease);
-	
+	//// file pointer
+	//FILE* fp1 = NULL;
+	//FILE* fp2 = NULL;
 
-	// memory allocated by malloc()
-	std::shared_ptr<int> sp2( (int*)malloc(sizeof(int)), 
-							  mallocFree<int>);		//	lambda 中使用模版类型 T, 调用lambda 时要具体化 T 的对应类型
-	std::shared_ptr<float> sp3( (float*)malloc(sizeof(float)), 
-							    mallocFree<float>);
+	//errno_t res1 = fopen_s(&fp1, "test00.txt", "r+");
+	//std::shared_ptr<FILE> sp1(	fp1, 
+	//							fileRelease_struct()
+	//						);
+	//
+	//errno_t res2 = fopen_s(&fp2, "test01.txt", "r+");
+	//std::shared_ptr<FILE> sp2(	fp2, 
+	//							fileRelease_lambda
+	//						);
+
+	//// memory allocated by malloc()
+	//std::shared_ptr<int> sp1(	(int*)malloc(sizeof(int)), 
+	//							mallocFree_struct<int>()
+	//						);		
+
+	//std::shared_ptr<float> sp2(	(float*)malloc(sizeof(float)), 
+	//							mallocFree_lambda<float>	
+	//							//	lambda 中使用模版类型 T, 调用lambda 时要具体化 T 的对应类型
+	//						);
+
+
+
+	//	dynamical array allocated by new[]
+	std::shared_ptr<int> sp1(	new int[10], 
+								array_delete_struct<int>()
+							);
+
+	std::shared_ptr<int> sp2(	new int[10],
+								array_delete_lambda<int>
+							);
 
 }
 
@@ -295,7 +318,7 @@ public:
 	}
 
 private:
-	int x;
+	int x = 3;
 };
 
 
@@ -335,13 +358,11 @@ private:
 void shared_from_this_test()
 {
 	std::shared_ptr<B> sp1(new B());
-
 	std::shared_ptr<B> sp2(sp1->getThis());
 
 	printf("The reference count of sp1 is %ld\n", sp1.use_count());
 	printf("The reference count of sp2 is %ld\n", sp2.use_count());
 
-	
 }
 
 
@@ -354,10 +375,15 @@ int main()
 
 	//unique_ptr_constructor_doodle();
 	//unique_ptr_assignment_doodle();
-	//shared_ptr_custom_deleter_test();
+	
+	shared_ptr_custom_deleter_test();
 
 	//shared_ptr_recursive_reference_test();
-	shared_from_this_test();
+	//shared_from_this_test();
+
+
+
+
 
 	return 0;
 }
